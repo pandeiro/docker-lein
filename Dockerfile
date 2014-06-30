@@ -1,4 +1,4 @@
-FROM debian-oracle-jdk8
+FROM pandeiro/oracle-jdk8
 MAINTAINER Murphy McMahon
 
 ENV LEIN_ROOT true
