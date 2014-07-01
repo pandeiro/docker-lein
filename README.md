@@ -13,3 +13,8 @@ A Leiningen image based on Debian Wheezy and
 
     docker pull pandeiro/lein
 
+    alias lein='docker run -v $(pwd):/project pandeiro/lein'
+
+    cd /path/to/project
+    lein ring server
+
