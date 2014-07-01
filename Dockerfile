@@ -8,3 +8,7 @@ RUN wget -O /usr/bin/lein \
     && chmod +x /usr/bin/lein
 
 RUN lein
+
+VOLUME ["/project"]
+
+WORKDIR /project
