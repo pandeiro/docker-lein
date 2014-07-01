@@ -12,3 +12,5 @@ RUN lein
 VOLUME ["/project"]
 
 WORKDIR /project
+
+ENTRYPOINT ["lein"]
