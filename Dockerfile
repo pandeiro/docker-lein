@@ -1,5 +1,5 @@
 FROM pandeiro/oracle-jdk8
-MAINTAINER Murphy McMahon
+MAINTAINER Murphy McMahon <pandeiro.docker@gmail.com>
 
 ENV LEIN_ROOT true
 
