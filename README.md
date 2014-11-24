@@ -10,6 +10,7 @@ git clone https://github.com/pandeiro/docker-lein && cd docker-lein
 
 docker build -t 'lein' .
 ```
+
 ## Pre-built
 
 ```bash
