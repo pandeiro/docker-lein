@@ -78,3 +78,19 @@ ring server-headless
 ring uberwar # war file appears in $PWD/target, just as with lein
 
 ```
+
+### As a base image
+
+You can build a Docker image from any leiningen-based project
+by starting with
+
+```
+FROM pandeiro/lein:latest
+
+ADD project.clj /project/
+RUN lein deps
+
+ADD src resources /projects/
+...
+```
+
