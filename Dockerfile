@@ -9,8 +9,3 @@ RUN wget -q -O /usr/bin/lein \
 
 RUN lein
 
-VOLUME ["/project"]
-
-WORKDIR /project
-
-ENTRYPOINT ["lein"]

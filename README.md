@@ -25,7 +25,7 @@ replace that with the name of your custom-built image.
 ### Clojure REPL
 
 ```bash
-alias clj-repl='docker run -i -t pandeiro/lein repl'
+alias clj-repl='docker run -i -t pandeiro/lein lein repl'
 
 clj-repl
 ```
@@ -35,7 +35,7 @@ clj-repl
 ```bash
 cd /path/to/project
 
-alias project-repl="docker run -i -t -v $(pwd):/project pandeiro/lein repl"
+alias project-repl="docker run -i -t -v $(pwd):/project pandeiro/lein lein repl"
 
 project-repl
 ```
@@ -50,7 +50,7 @@ function will help with that.
 ```bash
 cache-lein() {
     imagename="$1"
-    docker run -v $(pwd):/project pandeiro/lein deps
+    docker run -v $(pwd):/project pandeiro/lein lein deps
     docker commit $(docker ps -a | awk '/lein deps/ {print $1}' | head -1) "$imagename"
 }
 ```
@@ -64,7 +64,7 @@ cd /path/to/ring-project
 
 cache-lein project
 
-alias ring="docker run -p 3000:3000 -v $(pwd):/project project ring"
+alias ring="docker run -p 3000:3000 -v $(pwd):/project project lein ring"
 
 ring server-headless
 ```
@@ -87,11 +87,17 @@ by starting with
 ```
 FROM pandeiro/lein:latest
 
-ADD project.clj /project/
+RUN mkdir /project
+
+WORKDIR /project
+
+ADD project.clj .
+
 RUN lein deps
 
-ADD src resources /projects/
-...
+ADD src .
+ADD resources .
+# ...
 ```
 
 ## License
