@@ -3,7 +3,7 @@ MAINTAINER Murphy McMahon <pandeiro.docker@gmail.com>
 
 ENV LEIN_ROOT true
 
-RUN wget -O /usr/bin/lein \
+RUN wget -q -O /usr/bin/lein \
     https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein \
     && chmod +x /usr/bin/lein
 
