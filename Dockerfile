@@ -9,5 +9,8 @@ RUN wget -q -O /usr/bin/lein \
 
 RUN lein
 
+RUN mkdir /app
+WORKDIR /app
+
 ENTRYPOINT ["lein"]
 

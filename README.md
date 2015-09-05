@@ -37,7 +37,7 @@ clj-repl
 ```bash
 cd /path/to/project
 
-alias project-repl="docker run -i -t -v $(pwd):/project pandeiro/lein repl"
+alias project-repl="docker run -i -t -v $(pwd):/app pandeiro/lein repl"
 
 project-repl
 ```
@@ -52,7 +52,7 @@ function will help with that.
 ```bash
 cache-lein() {
     imagename="$1"
-    docker run -v $(pwd):/project pandeiro/lein deps
+    docker run -v $(pwd):/app pandeiro/lein deps
     docker commit $(docker ps -a | awk '/lein deps/ {print $1}' | head -1) "$imagename"
 }
 ```
@@ -66,7 +66,7 @@ cd /path/to/ring-project
 
 cache-lein project
 
-alias ring="docker run -p 3000:3000 -v $(pwd):/project project ring"
+alias ring="docker run -p 3000:3000 -v $(pwd):/app project ring"
 
 ring server-headless
 ```
@@ -89,16 +89,10 @@ by starting with
 ```
 FROM pandeiro/lein:latest
 
-RUN mkdir /project
-
-WORKDIR /project
-
-ADD project.clj .
+COPY . /app
 
 RUN lein deps
 
-ADD src .
-ADD resources .
 # ...
 ```
 
