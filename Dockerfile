@@ -9,3 +9,5 @@ RUN wget -q -O /usr/bin/lein \
 
 RUN lein
 
+ENTRYPOINT ["lein"]
+

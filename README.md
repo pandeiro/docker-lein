@@ -22,10 +22,12 @@ docker pull pandeiro/lein
 These all assume you're using the pandeiro/lein image; otherwise
 replace that with the name of your custom-built image.
 
+Note: the image now sets `lein` as the default `ENTRYPOINT`.
+
 ### Clojure REPL
 
 ```bash
-alias clj-repl='docker run -i -t pandeiro/lein lein repl'
+alias clj-repl='docker run -i -t pandeiro/lein repl'
 
 clj-repl
 ```
@@ -35,7 +37,7 @@ clj-repl
 ```bash
 cd /path/to/project
 
-alias project-repl="docker run -i -t -v $(pwd):/project pandeiro/lein lein repl"
+alias project-repl="docker run -i -t -v $(pwd):/project pandeiro/lein repl"
 
 project-repl
 ```
@@ -50,7 +52,7 @@ function will help with that.
 ```bash
 cache-lein() {
     imagename="$1"
-    docker run -v $(pwd):/project pandeiro/lein lein deps
+    docker run -v $(pwd):/project pandeiro/lein deps
     docker commit $(docker ps -a | awk '/lein deps/ {print $1}' | head -1) "$imagename"
 }
 ```
@@ -64,7 +66,7 @@ cd /path/to/ring-project
 
 cache-lein project
 
-alias ring="docker run -p 3000:3000 -v $(pwd):/project project lein ring"
+alias ring="docker run -p 3000:3000 -v $(pwd):/project project ring"
 
 ring server-headless
 ```
